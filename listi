@@ -1,0 +1,49 @@
+import 'dart:io';
+
+List<String> groceryList = [];
+
+void addItemToList(String item) {
+  groceryList.add(item);
+}
+
+void displayList() {
+  if (groceryList.isEmpty) {
+    print("The grocery list is empty");
+  } else {
+    print("Grocery List:");
+    for (var i = 0; i < groceryList.length; i++) {
+      print("${i + 1}. ${groceryList[i]}");
+    }
+  }
+}
+
+void main() {
+  bool exit = false;
+
+  while (!exit) {
+    print("\nMenu:");
+    print("1. Add an item to the list");
+    print("2. View the list");
+    print("3. End program");
+    stdout.write("Enter your choice: ");
+    String choice = stdin.readLineSync()!;
+
+    switch (choice) {
+      case "1":
+        stdout.write("\nEnter the item name: ");
+        String newItem = stdin.readLineSync()!;
+        addItemToList(newItem);
+        print("'$newItem' added to the list.");
+        break;
+      case "2":
+        displayList();
+        break;
+      case "3":
+        exit = true;
+        print("Program ended.");
+        break;
+      default:
+        print("Invalid choice. Please select again.");
+    }
+  }
+}
